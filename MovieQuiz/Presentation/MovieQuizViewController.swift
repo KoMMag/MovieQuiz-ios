@@ -5,6 +5,9 @@ final class MovieQuizViewController: UIViewController {
     @IBOutlet weak private var counterLabel: UILabel!
     @IBOutlet weak private var imageView: UIImageView!
     @IBOutlet weak private var textLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var buttonNo: UIButton!
+    @IBOutlet weak var buttonYes: UIButton!
     
     struct QuizResultsViewModel {
         let title: String
@@ -24,7 +27,7 @@ final class MovieQuizViewController: UIViewController {
         let correctAnswer: Bool
     }
     
-    let questions: [QuizQuestion] = [
+    private let questions: [QuizQuestion] = [
         QuizQuestion(
             image: "The Godfather",
             text: "Рейтинг этого фильма больше чем 6?",
@@ -98,8 +101,8 @@ final class MovieQuizViewController: UIViewController {
         
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
-        imageView.layer.cornerRadius = 6
-        imageView.layer.borderColor = isCorrect ? UIColor.green.cgColor : UIColor.red.cgColor
+        imageView.layer.cornerRadius = 20
+        imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.showNextQuestionOrResults()
@@ -135,11 +138,8 @@ final class MovieQuizViewController: UIViewController {
         imageView.image = viewModel.image
         textLabel.text = viewModel.question
         counterLabel.text = viewModel.questionNumber
-        
-        
-        // Сброс стилизации рамки картинки
-            imageView.layer.borderWidth = 0
-            imageView.layer.borderColor = UIColor.clear.cgColor
+        imageView.layer.borderWidth = 0
+        imageView.layer.borderColor = UIColor.clear.cgColor
     }
     
     private func resetQuiz() {
@@ -152,6 +152,12 @@ final class MovieQuizViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageView.layer.cornerRadius = 20
+        textLabel.font=UIFont(name: "YSDisplay-Bold", size: 23)
+        counterLabel.font=UIFont(name: "YSDisplay-Medium", size: 20)
+        titleLabel.font=UIFont(name: "YSDisplay-Medium", size: 20)
+        buttonNo.titleLabel?.font = UIFont(name: "YSDisplay-Medium" , size: 20)
+        buttonYes.titleLabel?.font = UIFont(name: "YSDisplay-Medium" , size: 20)
         resetQuiz()
     }
 }
