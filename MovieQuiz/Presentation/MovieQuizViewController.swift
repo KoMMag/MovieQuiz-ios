@@ -138,11 +138,8 @@ final class MovieQuizViewController: UIViewController {
         imageView.image = viewModel.image
         textLabel.text = viewModel.question
         counterLabel.text = viewModel.questionNumber
-        
-        
-        // Сброс стилизации рамки картинки
-            imageView.layer.borderWidth = 0
-            imageView.layer.borderColor = UIColor.clear.cgColor
+        imageView.layer.borderWidth = 0
+        imageView.layer.borderColor = UIColor.clear.cgColor
     }
     
     private func resetQuiz() {
